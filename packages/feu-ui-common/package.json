@@ -1,6 +1,6 @@
 {
   "name": "feu-ui-common",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "> TODO: description",
   "author": "zhilili <zhilili-jk@360jinrong.net>",
   "homepage": "https://github.com/zhaohes/suke#readme",
@@ -27,6 +27,6 @@
     "url": "https://github.com/zhaohes/suke/issues"
   },
   "dependencies": {
-    "feu-utils": "^0.0.0"
+    "feu-utils": "^0.0.1"
   }
 }
