@@ -2,6 +2,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
+import { terser } from 'rollup-plugin-terser';
+import { eslint } from 'rollup-plugin-terser';
 
 const sass = require('node-sass');
 const fs = require('fs');
@@ -12,7 +14,7 @@ let pathname = path.join(__dirname, './packages');
 
 let dirArr = fs.readdirSync(pathname);
 
-const processSass = function (context, payload) {
+const processSass = function (context) {
     return new Promise((resolve, reject) => {
         sass.render({
             file: context
@@ -20,11 +22,11 @@ const processSass = function (context, payload) {
             if (!err) {
                 resolve(result);
             } else {
-                reject(err)
+                reject(err);
             }
         });
-    })
-}
+    });
+};
 
 function createRollupConfig(packages) {
     let configs = [];
@@ -40,9 +42,16 @@ function createRollupConfig(packages) {
             globals: {
                 react: 'React'
             }
-        }
+        };
         config.plugins = [
             resolve(),
+            eslint({
+                throwOnError: true,
+                throwOnWarning: true,
+                include: ['packages/**'],
+                exclude: ['node_modules/**']
+            }),
+            commonjs(),
             postcss({
                 extract: true,
                 extensions: ['css', 'scss'],
@@ -50,12 +59,12 @@ function createRollupConfig(packages) {
             }),
             babel({
                 exclude: '**/node_modules/**',
-                extensions: [".js", ".jsx"],
+                extensions: ['.js', '.jsx'],
                 babelHelpers: 'bundled',
-                presets: [['@babel/preset-env', { modules: false, "loose": true }], '@babel/preset-react']
+                presets: [['@babel/preset-env', { modules: false, 'loose': true }], '@babel/preset-react']
             }),
-            commonjs()
-        ]
+            terser()
+        ];
     });
     return configs;
 }
