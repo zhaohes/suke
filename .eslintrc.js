@@ -24,6 +24,7 @@ module.exports = {
         "quotes": [
             "warn",
             "single"
-        ]
+        ],
+        "no-unused-vars": "off"
     }
 }

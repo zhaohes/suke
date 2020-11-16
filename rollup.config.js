@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
-import { terser } from 'rollup-plugin-terser';
+// import { terser } from 'rollup-plugin-terser';
 import { eslint } from 'rollup-plugin-eslint';
 
 const sass = require('node-sass');
@@ -34,7 +34,7 @@ function createRollupConfig(packages) {
     packages.forEach((file, index) => {
         let config = configs[index] = {};
         config.input = 'packages/' + file + '/src/index.js';
-        config.external = ['react'];
+        config.external = ['react','antd-mobile'];
         config.output = {
             format: 'esm',
             file: 'packages/' + file + '/lib/index.js',
@@ -59,11 +59,9 @@ function createRollupConfig(packages) {
             babel({
                 exclude: '**/node_modules/**',
                 extensions: ['.js', '.jsx'],
-                babelHelpers: 'bundled',
-                presets: [['@babel/preset-env', { modules: false, 'loose': true }], '@babel/preset-react']
+                babelHelpers: 'runtime'
             }),
-            commonjs(),
-            terser()
+            commonjs()
         ];
     });
     return configs;
