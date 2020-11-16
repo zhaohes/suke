@@ -3,13 +3,17 @@
         [
             "@babel/preset-env",
             {
-                // 避免转换成 CommonJS
                 "modules": false,
-                // 使用 loose 模式，避免产生副作用
-                "loose": true
+                "loose": true,
+                "targets": {
+                    "browsers": "> 1%, IE 11, not op_mini all, not dead",
+                    "node": 8
+                }
             }
         ],
-        "@babel/preset-react"
+        [
+            "@babel/preset-react"
+        ]
     ],
     "plugins": [
         [
