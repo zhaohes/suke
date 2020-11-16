@@ -8,4 +8,4 @@ function ui(a, b) {
     console.log('结果为：' + res);
 }
 
-export default { ui, Message }
+export default { ui, Message };

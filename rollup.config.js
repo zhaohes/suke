@@ -3,7 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
-import { eslint } from 'rollup-plugin-terser';
+import { eslint } from 'rollup-plugin-eslint';
 
 const sass = require('node-sass');
 const fs = require('fs');
@@ -46,12 +46,11 @@ function createRollupConfig(packages) {
         config.plugins = [
             resolve(),
             eslint({
-                throwOnError: true,
-                throwOnWarning: true,
-                include: ['packages/**'],
+                throwOnError: false,
+                throwOnWarning: false,
+                include: ['packages/**/*.js'],
                 exclude: ['node_modules/**']
             }),
-            commonjs(),
             postcss({
                 extract: true,
                 extensions: ['css', 'scss'],
@@ -63,6 +62,7 @@ function createRollupConfig(packages) {
                 babelHelpers: 'bundled',
                 presets: [['@babel/preset-env', { modules: false, 'loose': true }], '@babel/preset-react']
             }),
+            commonjs(),
             terser()
         ];
     });

@@ -15,10 +15,10 @@ module.exports = {
         }
     },
     plugins: [
-        react
+        "react"
     ],
     "rules": {
-        "indent": ["error", 4],
+        "indent": ["warn", 4],
         "semi": ["warn", "always"],
         "eqeqeq": "off",
         "quotes": [
