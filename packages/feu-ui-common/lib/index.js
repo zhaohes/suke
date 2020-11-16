@@ -1,5 +1,3 @@
-'use strict';
-
 const { add } = require('feu-utils');
 
 function ui(a, b) {
@@ -7,5 +5,6 @@ function ui(a, b) {
     console.log('结果为：' + res);
 }
 
-module.exports = ui;
+var index = { ui };
 
+export default index;
