@@ -1,10 +1,13 @@
-const { add } = require('feu-utils');
+var _require = require('feu-utils'),
+    add = _require.add;
 
 function ui(a, b) {
-    let res = add(a, b);
-    console.log('结果为：' + res);
+  var res = add(a, b);
+  console.log('结果为：' + res);
 }
 
-var index = { ui };
+var index = {
+  ui: ui
+};
 
 export default index;

@@ -9,4 +9,20 @@ function min(a, b) {
     return Math.min(a, b);
 }
 
-export default { add, min };
+let doSomeThing = () => {
+    console.log("doSomeThing");
+}
+
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    say() {
+        console.log('my name is' + this.name + ',my age is' + this.age);
+    }
+}
+
+let person = new Person('siri', 18);
+
+export default { add, min, person, doSomeThing };
