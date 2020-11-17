@@ -1,6 +1,5 @@
 import React from 'react';
-import 'antd-mobile/lib/button/style/css';
-import _Button from 'antd-mobile/lib/button';
+import add from 'feu-utils';
 
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
@@ -28,29 +27,6 @@ var Message = /*#__PURE__*/function (_React$Component) {
   return Message;
 }(React.Component);
 
-var SButton = /*#__PURE__*/function (_React$Component) {
-  inheritsLoose(SButton, _React$Component);
-
-  function SButton() {
-    return _React$Component.apply(this, arguments) || this;
-  }
-
-  var _proto = SButton.prototype;
-
-  _proto.render = function render() {
-    return /*#__PURE__*/React.createElement(_Button, {
-      type: "primary",
-      size: "small",
-      inline: true
-    }, "small");
-  };
-
-  return SButton;
-}(React.Component());
-
-var _require = require('feu-utils'),
-    add = _require.add;
-
 function ui(a, b) {
   var res = add(a, b);
   console.log('结果为：' + res);
@@ -58,8 +34,7 @@ function ui(a, b) {
 
 var index = {
   ui: ui,
-  Message: Message,
-  Alert: SButton
+  Message: Message
 };
 
 export default index;
