@@ -1,4 +1,4 @@
-import resolve from '@rollup/plugin-node-resolve';
+import resolveNode from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
@@ -44,7 +44,7 @@ function createRollupConfig(packages) {
             }
         };
         config.plugins = [
-            resolve(),
+            resolveNode(),
             eslint({
                 throwOnError: false,
                 throwOnWarning: false,
